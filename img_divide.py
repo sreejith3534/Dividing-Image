@@ -29,7 +29,7 @@ def divide_img(im_arr, out_path, shape):
     all_array_pos = []
     img_count = 0
     y = 0
-    height = shape  # size for feature mapping while using pre-trained model.
+    height = im_arr.shape[1]//shape  # size for feature mapping while using pre-trained model.
     x_pos = 0
     try:
         while y <= im_arr.shape[1]:
@@ -45,12 +45,12 @@ def divide_img(im_arr, out_path, shape):
                     im.save(out_path + str(img_count) + '_out.jpg', 'JPEG')  # save the image.
                     img_count += 1
                     all_img += 1
-                    x += shape
-                    width += shape
+                    x += im_arr.shape[1]//shape
+                    width += im_arr.shape[1]//shape
             except ValueError:
                 print('end of iteration')
-            y += shape
-            height += shape
+            y += im_arr.shape[1]//shape
+            height += im_arr.shape[1]//shape
             x_pos += 1
     except SystemError:
         print('out of bound, file saved')
@@ -58,9 +58,4 @@ def divide_img(im_arr, out_path, shape):
 
 
 if __name__ == '__main__':
-    all_array = divide_img(img, '../_test/')
-    print(len(all_array))
-    print(all_array[0])
-    print(all_array[19])
-    print(all_array[20])
-    print(all_array[21])
+
